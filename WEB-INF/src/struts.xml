@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <constant name="struts.enable.DynamicMethodInvocation" value="false"/>
+    <constant name="struts.devMode" value="false"/>
+
+    <package name="tpstruts" namespace="/" extends="struts-default">
+        <default-action-ref name="Catalogue"/>
+
+        <action name="Catalogue" class="tpstruts.ProductAction" method="list">
+            <result>/jsp/Index.jsp</result>
+        </action>
+
+        <action name="ViewProduct" class="tpstruts.ProductAction" method="view">
+            <interceptor-ref name="paramsPrepareParamsStack"/>
+            <result>/jsp/ViewProduct.jsp</result>
+        </action>
+
+        <action name="List_Client" class="tpstruts.ClientAction" method="list">
+            <result>/jsp/admin/ListClient.jsp</result>
+        </action>
+
+        <action name="Add_Client" class="tpstruts.ClientAction" method="add">
+            <result name="input">/jsp/admin/ListClient.jsp</result>
+            <result name="success" type="redirectAction">List_Client</result>
+        </action>
+
+        <action name="Edit_Client" class="tpstruts.ClientAction" method="edit">
+            <interceptor-ref name="paramsPrepareParamsStack"/>
+            <result name="success">/jsp/admin/EditClient.jsp</result>
+        </action>
+
+        <action name="Modify_Client" class="tpstruts.ClientAction" method="modify">
+            <result name="input">/jsp/admin/EditClient.jsp</result>
+            <result name="success" type="redirectAction">List_Client</result>
+        </action>
+
+        <action name="Delete_Client" class="tpstruts.ClientAction" method="delete">
+            <result name="success" type="redirectAction">List_Client</result>
+        </action>
+
+        <action name="List_Products" class="tpstruts.ProductAction" method="list">
+            <result>/jsp/ListProduct.jsp</result>
+        </action>
+
+        <action name="Add_Products" class="tpstruts.ProductAction" method="add">
+            <result name="input">/jsp/ListProduct.jsp</result>
+            <result name="success" type="redirectAction">List_Products</result>
+        </action>
+
+        <action name="Edit_Products" class="tpstruts.ProductAction" method="edit">
+            <interceptor-ref name="paramsPrepareParamsStack"/>
+            <result name="success">/jsp/admin/EditProduct.jsp</result>
+        </action>
+
+        <action name="Modify_Product" class="tpstruts.ProductAction" method="modify">
+            <result name="input">/jsp/admin/EditProduct.jsp</result>
+            <result name="success" type="redirectAction">List_Products</result>
+        </action>
+
+        <action name="Delete_Products" class="tpstruts.ProductAction" method="delete">
+            <result name="success" type="redirectAction">List_Products</result>
+        </action>
+
+        <action name="IndexAdmin">
+            <result>/jsp/admin/IndexAdmin.jsp</result>
+        </action>
+    </package>
+</struts>
